@@ -1,0 +1,64 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "id": "http://jsonschema.net",
+  "required": false,
+  "globals": {
+    "glossaryIcon": {
+      "type": "string",
+      "required": false,
+      "default": null,
+      "title": "Glossary Icon",
+      "inputType": "Asset:image",
+      "validators": [],
+      "help": "Select an icon image to be displayed as the glossary widget button"
+    },
+    "terms": {
+      "type": "array",
+      "required": true,
+      "title": "Glossary Terms",
+      "items": {
+        "type": "object",
+        "required": true,
+        "properties": {
+          "term": {
+            "type": "string",
+            "required": true,
+            "title": "Term",
+            "inputType": "Text",
+            "validators": ["required"],
+            "help": "The term or word to be defined"
+          },
+          "description": {
+            "type": "string",
+            "required": true,
+            "title": "Description",
+            "inputType": "TextArea",
+            "validators": ["required"],
+            "help": "The definition or explanation of the term"
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "_isEnabled": {
+      "type": "boolean",
+      "required": true,
+      "default": true,
+      "title": "Enable Glossary",
+      "inputType": "Checkbox",
+      "validators": [],
+      "help": "Controls whether the Glossary extension is enabled or disabled"
+    },
+    "_classes": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "title": "Custom Classes",
+      "inputType": "Text",
+      "validators": [],
+      "help": "Custom CSS classes to be added to the glossary widget container"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "adapt-glossary",
+  "version": "1.0.0",
+  "framework": ">=5.31.24",
+  "homepage": "https://github.com/ambivalent-axiom/adapt-glossary",
+  "bugs": "https://github.com/ambivalent-axiom/adapt-glossary",
+  "authors": [
+    "Ambax@Digify arturs@digify.lv"
+  ],
+  "extension": "glossary",
+  "displayName": "Glossary",
+  "description": "A glossary companion icon to accomodate student with some keywords ands explanations of terms.",
+  "main": "/js/adapt-glossary.js",
+  "keywords": [
+    "adapt-plugin",
+    "adapt-extension"
+  ],
+  "license": "GPL-3.0",
+  "targetAttribute": "_glossary",
+  "private": true
+
+}
