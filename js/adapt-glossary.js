@@ -9,11 +9,9 @@ class GlossaryExtension extends Backbone.Controller {
   }
 
   onDataReady() {
-    // Get configuration
-    const config = Adapt.course.get('_glossary');
+    const config = Adapt.course.get('_glossary'); // Get configuration
     if (!config?._isEnabled) return; // Exit in case if glossary is not present in course.
-    const globals = Adapt.course.get('_globals')?._extensions?._glossary;
-    let terms = globals?.terms || [];
+    let terms = config?.terms || [];
     const icon = config.glossaryIcon;
     const buttonText = config.buttonText || 'G';
     const buttonPosition = config.buttonPosition || 'right';

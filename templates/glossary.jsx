@@ -61,9 +61,10 @@ export default function Glossary(props) {
                     {term.term}
                   </h3>
                   {expandedTerms.has(index) && (
-                    <p className="glossary__term-description">
-                      {term.description}
-                    </p>
+                    <p
+                      className="glossary__term-description"
+                      dangerouslySetInnerHTML={{ __html: term.description }}
+                    />
                   )}
                 </div>
               ))}

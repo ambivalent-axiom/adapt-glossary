@@ -4,109 +4,138 @@
   "id": "http://jsonschema.net",
   "required": false,
   "globals": {
-    "glossaryIcon": {
-      "type": "string",
-      "required": false,
-      "default": null,
-      "title": "Glossary Icon",
-      "inputType": "Asset:image",
-      "validators": [],
-      "help": "Select an icon image to be displayed as the glossary widget button"
-    },
-    "terms": {
-      "type": "array",
-      "required": true,
-      "title": "Glossary Terms",
-      "items": {
-        "type": "object",
-        "required": true,
-        "properties": {
-          "term": {
-            "type": "string",
-            "required": true,
-            "title": "Term",
-            "inputType": "Text",
-            "validators": ["required"],
-            "help": "The term or word to be defined"
-          },
-          "description": {
-            "type": "string",
-            "required": true,
-            "title": "Description",
-            "inputType": "TextArea",
-            "validators": ["required"],
-            "help": "The definition or explanation of the term"
-          }
-        }
-      }
-    }
-  },
-  "properties": {
-    "_isEnabled": {
-      "type": "boolean",
-      "required": true,
-      "default": true,
-      "title": "Enable Glossary",
-      "inputType": "Checkbox",
-      "validators": [],
-      "help": "Controls whether the Glossary extension is enabled or disabled"
-    },
-    "_classes": {
+    "ariaRegion": {
       "type": "string",
       "required": false,
       "default": "",
-      "title": "Custom Classes",
       "inputType": "Text",
       "validators": [],
-      "help": "Custom CSS classes to be added to the glossary widget container"
-    },
-    "sort": {
-      "type": "boolean",
-      "required": false,
-      "default": false,
-      "title": "Sort terms alphabetically",
-      "inputType": "Checkbox",
-      "validators": [],
-      "help": "Controls whether the Glossary items will be sorted in alphabetical order"
-    },
-    "buttonPosition": {
-      "type": "string",
-      "required": false,
-      "default": "right",
-      "title": "Button Position",
-      "inputType": {
-        "type": "Radio",
-        "options": [
-          {"value": "left", "label": "Left"},
-          {"value": "right", "label": "Right"}
-        ]
-      },
-      "validators": [],
-      "help": "Select the position of the glossary button on the screen"
-    },
-    "panelPosition": {
-      "type": "string",
-      "required": false,
-      "default": "right",
-      "title": "Panel Position",
-      "inputType": {
-        "type": "Radio",
-        "options": [
-          {"value": "left", "label": "Left"},
-          {"value": "right", "label": "Right"}
-        ]
-      },
-      "validators": [],
-      "help": "Select the position of the glossary panel when opened"
-    },
-    "buttonText": {
-      "type": "string",
-      "required": false,
-      "default": "G",
-      "title": "Button Text",
-      "inputType": "Text",
-      "validators": [],
-      "help": "Text to display on the button if no icon is provided"
+      "translatable": true
+    }
+  },
+  "properties": {
+    "pluginLocations": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "config": {
+          "type": "object"
+        },
+        "course": {
+          "type": "object",
+          "properties": {
+            "_glossary": {
+              "type": "object",
+              "required": false,
+              "legend": "Glossary",
+              "properties": {
+                "_isEnabled": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": true,
+                  "title": "Enable Glossary",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the Glossary extension is enabled or disabled"
+                },
+                "_classes": {
+                  "type": "string",
+                  "required": false,
+                  "default": "",
+                  "title": "Custom Classes",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "Custom CSS classes to be added to the glossary widget container"
+                },
+                "sort": {
+                  "type": "boolean",
+                  "required": false,
+                  "default": false,
+                  "title": "Sort terms alphabetically",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the Glossary items will be sorted in alphabetical order"
+                },
+                "buttonPosition": {
+                  "type": "string",
+                  "required": false,
+                  "default": "right",
+                  "title": "Button Position (right or left)",
+                  "inputType": "Text",
+                  "validators": [
+                    {
+                      "type": "regexp",
+                      "regexp": "^(right|left)$",
+                      "message": "Please enter either 'right' or 'left'"
+                    }
+                  ],
+                  "help": "Enter either 'right' or 'left' for the glossary button position"
+                },
+                "panelPosition": {
+                  "type": "string",
+                  "required": false,
+                  "default": "right",
+                  "title": "Panel Position (right or left)",
+                  "inputType": "Text",
+                  "validators": [
+                    {
+                      "type": "regexp",
+                      "regexp": "^(right|left)$",
+                      "message": "Please enter either 'right' or 'left'"
+                    }
+                  ],
+                  "help": "Enter either 'right' or 'left' for the glossary panel position"
+                },
+                "glossaryIcon": {
+                  "type": "string",
+                  "required": false,
+                  "default": null,
+                  "title": "Glossary Icon",
+                  "inputType": "Asset:image",
+                  "validators": [],
+                  "help": "Select an icon image to be displayed as the glossary widget button"
+                },
+                "buttonText": {
+                  "type": "string",
+                  "required": false,
+                  "default": "G",
+                  "title": "Button Text",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "Text to display on the button if no icon is provided"
+                },
+                "terms": {
+                  "type": "array",
+                  "required": true,
+                  "title": "Glossary Terms",
+                  "items": {
+                    "type": "object",
+                    "required": true,
+                    "properties": {
+                      "term": {
+                        "type": "string",
+                        "required": true,
+                        "title": "Term",
+                        "inputType": "Text",
+                        "validators": ["required"],
+                        "help": "The term or word to be defined"
+                      },
+                      "description": {
+                        "type": "string",
+                        "required": true,
+                        "title": "Description",
+                        "inputType": "TextArea",
+                        "validators": ["required"],
+                        "help": "The definition or explanation of the term"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
