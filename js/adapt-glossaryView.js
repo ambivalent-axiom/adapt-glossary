@@ -1,11 +1,11 @@
 import Adapt from 'core/js/adapt';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import GlossaryComponent from './adapt-glossaryView';
+import { templates } from 'core/js/reactHelpers';
 
 class GlossaryView extends Backbone.View {
   className() {
-    return 'glossary-wrapper';
+    return 'glossary';
   }
 
   initialize() {
@@ -22,35 +22,14 @@ class GlossaryView extends Backbone.View {
   render() {
     this.$el.appendTo('body');
 
-    // Add button
-    this.$button = $(`
-      <button class="glossary-btn" aria-label="Open glossary">
-        <img src="${this.model.get('icon')}" alt="Glossary">
-      </button>
-    `).appendTo('body');
+    const data = {
+      ...this,
+      model: this.model.toJSON()
+    };
 
-    // Bind button click
-    this.$button.on('click', () => {
-      Adapt.trigger(this.isOpen ? 'glossary:close' : 'glossary:open');
-    });
-
-    // Render React component
-    this.renderReactComponent();
+    ReactDOM.render(<templates.glossary {...data} />, this.el);
 
     return this;
-  }
-
-  renderReactComponent() {
-    ReactDOM.render(
-      <GlossaryComponent
-        terms={this.model.get('terms')}
-        classes={this.model.get('classes')}
-        isOpen={this.isOpen}
-        onClose={() => Adapt.trigger('glossary:close')}
-        onTermClick={(term) => Adapt.trigger('glossary:termClicked', term)}
-      />,
-      this.el
-    );
   }
 
   openGlossary() {
@@ -72,6 +51,4 @@ class GlossaryView extends Backbone.View {
   }
 }
 
-// Specify the React template
-GlossaryView.template = 'glossary.jsx';
 export default GlossaryView;

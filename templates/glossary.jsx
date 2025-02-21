@@ -1,89 +1,65 @@
-import React, { useState, useEffect } from 'react';
-import Adapt from 'core/js/adapt';
+import React, { useState } from 'react';
 
-export default function GlossaryView(props) {
+export default function Glossary(props) {
   const {
     terms,
-    classes,
-    onTermClick,
-    isOpen = false,
-    onClose
+    icon
   } = props;
 
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredTerms, setFilteredTerms] = useState(terms);
+  const [isOpen, setIsOpen] = useState(false);
+  const [expandedTerms, setExpandedTerms] = useState(new Set());
 
-  useEffect(() => {
-    // Listen for requests to show specific terms
-    const handleShowTerm = (termId) => {
-      const term = terms.find(t => t.term === termId);
-      if (term) {
-        setSearchTerm(term.term);
-        filterTerms(term.term);
-      }
-    };
-
-    Adapt.on('glossary:showSpecificTerm', handleShowTerm);
-    return () => Adapt.off('glossary:showSpecificTerm', handleShowTerm);
-  }, [terms]);
-
-  const filterTerms = (search) => {
-    const filtered = terms.filter(term =>
-      term.term.toLowerCase().includes(search.toLowerCase()) ||
-      term.description.toLowerCase().includes(search.toLowerCase())
-    );
-    setFilteredTerms(filtered);
+  const toggleTerm = (index) => {
+    const newExpanded = new Set(expandedTerms);
+    if (newExpanded.has(index)) {
+      newExpanded.delete(index);
+    } else {
+      newExpanded.add(index);
+    }
+    setExpandedTerms(newExpanded);
   };
-
-  const handleSearch = (event) => {
-    const search = event.target.value;
-    setSearchTerm(search);
-    filterTerms(search);
-  };
-
-  if (!isOpen) return null;
 
   return (
-    <div className={`glossary ${classes}`}>
-      <div className="glossary__overlay">
-        <div className="glossary__content">
-          <div className="glossary__header">
-            <input
-              type="search"
-              className="glossary__search"
-              placeholder="Search terms..."
-              value={searchTerm}
-              onChange={handleSearch}
-            />
+    <>
+      <button
+        className="glossary-btn"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-label="Toggle glossary"
+      >
+        G
+      </button>
+
+      {isOpen && (
+        <div className="glossary__panel">
+          <div className="glossary__content">
             <button
               className="glossary__close"
-              onClick={onClose}
-              aria-label="Close glossary"
+              onClick={() => setIsOpen(false)}
             >
               ×
             </button>
-          </div>
 
-          <div className="glossary__terms">
-            {filteredTerms.length > 0
-              ? (
-                filteredTerms.map((term, index) => (
-                  <div
-                    key={index}
-                    className="glossary__term"
-                    onClick={() => onTermClick(term)}
-                  >
-                    <h3 className="glossary__term-title">{term.term}</h3>
-                    <p className="glossary__term-description">{term.description}</p>
-                  </div>
-                ))
-              )
-              : (
-                <p className="glossary__no-results">No matching terms found</p>
-              )}
+            <div className="glossary__terms">
+              {terms.map((term, index) => (
+                <div
+                  key={index}
+                  className="glossary__term"
+                  onClick={() => toggleTerm(index)}
+                >
+                  <h3 className="glossary__term-title">
+                    {term.term}
+                  </h3>
+                  {expandedTerms.has(index) && (
+                    <p className="glossary__term-description">
+                      {term.description}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
