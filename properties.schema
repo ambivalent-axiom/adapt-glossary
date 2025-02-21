@@ -60,31 +60,31 @@
                   "type": "string",
                   "required": false,
                   "default": "right",
-                  "title": "Button Position (right or left)",
-                  "inputType": "Text",
-                  "validators": [
-                    {
-                      "type": "regexp",
-                      "regexp": "^(right|left)$",
-                      "message": "Please enter either 'right' or 'left'"
-                    }
-                  ],
-                  "help": "Enter either 'right' or 'left' for the glossary button position"
+                  "title": "Button Position",
+                  "inputType": {
+                    "type": "Radio",
+                    "options": [
+                      "left",
+                      "right"
+                    ]
+                  },
+                  "validators": [],
+                  "help": "Select the position of the glossary button on the screen"
                 },
                 "panelPosition": {
                   "type": "string",
                   "required": false,
                   "default": "right",
-                  "title": "Panel Position (right or left)",
-                  "inputType": "Text",
-                  "validators": [
-                    {
-                      "type": "regexp",
-                      "regexp": "^(right|left)$",
-                      "message": "Please enter either 'right' or 'left'"
-                    }
-                  ],
-                  "help": "Enter either 'right' or 'left' for the glossary panel position"
+                  "title": "Panel Position",
+                  "inputType": {
+                    "type": "Radio",
+                    "options": [
+                      "left",
+                      "right"
+                    ]
+                  },
+                  "validators": [],
+                  "help": "Select the position of the glossary panel when opened"
                 },
                 "glossaryIcon": {
                   "type": "string",
