@@ -1,35 +1,34 @@
+
 {
   "_globals": {
     "_extensions": {
       "_glossary": {
-        "glossaryIcon": "course/en/images/correct.svg",
+        "_isEnabled": true,
         "terms": [
           {
-            "term": "HTML",
-            "description": "HyperText Markup Language is the standard markup language for creating web pages and web applications. It describes the structure of web pages using markup."
+            "term": "Example Term",
+            "description": "This is an example term definition."
           },
           {
-            "term": "CSS",
-            "description": "Cascading Style Sheets is a style sheet language used for describing the presentation of a document written in HTML. CSS describes how elements should be rendered on screen, on paper, in speech, or on other media."
+            "term": "Example Term 2",
+            "description": "This is an example term definition."
           },
           {
-            "term": "JavaScript",
-            "description": "JavaScript is a high-level, interpreted programming language that conforms to the ECMAScript specification. JavaScript enables interactive web pages and is an essential part of web applications."
-          },
-          {
-            "term": "Responsive Design",
-            "description": "A design approach aimed at crafting sites to provide an optimal viewing experience across a wide range of devices, from mobile phones to desktop computer monitors."
-          },
-          {
-            "term": "API",
-            "description": "Application Programming Interface is a set of functions and procedures allowing the creation of applications that access the features or data of an operating system, application, or other service."
+            "term": "Example Term 3",
+            "description": "This is an example term definition."
           }
-        ]
+        ],
+        "_classes": ""
       }
     }
   },
   "_glossary": {
     "_isEnabled": true,
-    "_classes": "glossary-custom-theme"
+    "_classes": "",
+    "buttonPosition": "left",
+    "panelPosition": "right",
+    "buttonText": "",
+    "glossaryIcon": "course/en/images/correct.svg"
   }
 }
+

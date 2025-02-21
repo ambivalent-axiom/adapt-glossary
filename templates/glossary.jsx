@@ -3,9 +3,14 @@ import React, { useState } from 'react';
 export default function Glossary(props) {
   const {
     terms,
-    icon
+    icon,
+    buttonText,
+    buttonPosition,
+    panelPosition
   } = props;
 
+  const buttonClass = `glossary-btn glossary-btn-${buttonPosition}`;
+  const panelClass = `glossary__panel glossary__panel-${panelPosition}`;
   const [isOpen, setIsOpen] = useState(false);
   const [expandedTerms, setExpandedTerms] = useState(new Set());
 
@@ -22,15 +27,21 @@ export default function Glossary(props) {
   return (
     <>
       <button
-        className="glossary-btn"
+        className={buttonClass}
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle glossary"
       >
-        G
+        {icon
+          ? (
+            <img src={icon} alt="Glossary" className="icon" />
+          )
+          : (
+            buttonText
+          )}
       </button>
 
       {isOpen && (
-        <div className="glossary__panel">
+        <div className={panelClass}>
           <div className="glossary__content">
             <button
               className="glossary__close"

@@ -9,18 +9,34 @@ class GlossaryExtension extends Backbone.Controller {
   }
 
   onDataReady() {
+    // Get configuration
     const config = Adapt.course.get('_glossary');
-    if (!config?._isEnabled) return;
+    if (!config?._isEnabled) return; // Exit in case if glossary is not present in course.
+    const globals = Adapt.course.get('_globals')?._extensions?._glossary;
+    let terms = globals?.terms || [];
+    const icon = config.glossaryIcon;
+    const buttonText = config.buttonText || 'G';
+    const buttonPosition = config.buttonPosition || 'right';
+    const panelPosition = config.panelPosition || 'right';
+    const sort = config.sort || false;
 
+    if (sort) { // sort terms alphabetically if required
+      terms = terms.sort((a, b) => a.term.localeCompare(b.term));
+    };
+
+    // preprare props
     const data = {
-      terms: Adapt.course.get('_globals')?._extensions?._glossary?.terms || [],
-      icon: Adapt.course.get('_globals')?._extensions?._glossary?.glossaryIcon || []
+      terms,
+      icon,
+      buttonText,
+      buttonPosition,
+      panelPosition
     };
 
     // Create container and render
     const container = $('<div class="glossary">').appendTo('body');
     ReactDOM.render(
-      <templates.glossary {...data} />,
+      <templates.glossary {...data} />, // take template and pass props
       container[0]
     );
   }
