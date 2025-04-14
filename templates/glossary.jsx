@@ -33,7 +33,7 @@ export default function Glossary(props) {
       >
         {icon
           ? (
-            <img src={icon} alt="Glossary" className="icon" />
+            <img src={icon} alt="Glossary" className="glossary__icon" />
           )
           : (
             buttonText
